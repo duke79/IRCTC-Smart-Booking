@@ -17,7 +17,7 @@ import com.baliyaan.android.library.web.MyWebView;
 public class MainActivity extends AppCompatActivity {
 
     Context mContext;
-    MyWebView mWebView;
+    static MyWebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
