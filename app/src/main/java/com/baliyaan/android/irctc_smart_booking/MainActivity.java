@@ -10,8 +10,9 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
-import com.baliyaan.android.library.io.MyWebView;
+import com.baliyaan.android.library.web.MyWebView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+
+        //Toast.makeText(mContext,"Activity starts.",Toast.LENGTH_SHORT).show();
         //setContentView(R.layout.activity_main);
         String url = getResources().getString(R.string.irctc_url);
         mWebView = new MyWebView(this,url);
