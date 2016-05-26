@@ -36,7 +36,7 @@ public class MyCallbackExtension extends MyCallbackInterface {
             Bitmap image = Bitmap.createBitmap(MainActivity.mWebView.getWidth(), webViewHeight, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(image);
             MainActivity.mWebView.draw(canvas);
-            Bitmap captchaImage = Bitmap.createBitmap(image, 0, 0, 200, 200);
+            Bitmap captchaImage = Bitmap.createBitmap(image, 488, 363, 120, 40);
 
             //LinearLayOut Setup
             LinearLayout linearLayout = new LinearLayout(mContext);
