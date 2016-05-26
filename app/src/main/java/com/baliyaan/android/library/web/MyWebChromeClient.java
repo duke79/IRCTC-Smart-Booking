@@ -11,9 +11,11 @@ import android.widget.Toast;
  */
 public class MyWebChromeClient extends WebChromeClient {
     Context mContext;
+    MyCallbackInterface mCallbackInterface;
 
-    public MyWebChromeClient(Context context){
+    public MyWebChromeClient(Context context,MyCallbackInterface callbackInterface){
         mContext = context;
+        mCallbackInterface=callbackInterface;
     }
 
     @Override
@@ -26,11 +28,11 @@ public class MyWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int progress) {
 
         if (progress == 1) {
-            Toast.makeText(mContext,"Page loading starts...",Toast.LENGTH_SHORT).show();
+            mCallbackInterface.Call("1");
         }
 
         if (progress == 100) {
-            Toast.makeText(mContext,"Page loaded",Toast.LENGTH_SHORT).show();
+            mCallbackInterface.Call("100");
         }
     }
 }

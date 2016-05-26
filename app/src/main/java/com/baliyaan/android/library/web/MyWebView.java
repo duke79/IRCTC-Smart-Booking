@@ -15,10 +15,12 @@ import com.baliyaan.android.library.web.WebAppInterface;
  * Created by Pulkit Singh on 5/25/2016.
  */
 public class MyWebView extends WebView {
+    MyCallbackInterface mCallbackInterface;
 
-    public MyWebView(Context context,String url) {
+    public MyWebView(Context context,String url,MyCallbackInterface callbackInterface) {
         super(context);
 
+        mCallbackInterface = callbackInterface;
         // Enable javascript
         WebSettings webSettings = getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -38,7 +40,7 @@ public class MyWebView extends WebView {
         setWebViewClient(webViewClient);
 
         // To show Java Script alerts in the webview
-        MyWebChromeClient webChromeClient = new MyWebChromeClient(context);
+        MyWebChromeClient webChromeClient = new MyWebChromeClient(context,mCallbackInterface);
         setWebChromeClient(webChromeClient);
     }
 }

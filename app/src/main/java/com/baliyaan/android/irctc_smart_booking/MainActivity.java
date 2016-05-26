@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(mContext,"Activity starts.",Toast.LENGTH_SHORT).show();
         //setContentView(R.layout.activity_main);
         String url = getResources().getString(R.string.irctc_url);
-        mWebView = new MyWebView(this,url);
+        MyCallbackExtension callbackExtension = new MyCallbackExtension(this);
+        mWebView = new MyWebView(this,url,callbackExtension);
         setContentView(mWebView);
     }
 
