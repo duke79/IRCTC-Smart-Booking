@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">irctc-smart-booking</string>
+    <string name="irctc_url">https://www.irctc.co.in/</string>
 </resources>

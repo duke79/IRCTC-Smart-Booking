@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         //setContentView(R.layout.activity_main);
-        mWebView = new MyWebView(mContext,"http://www.tutorialspoint.com");
+        String url = getResources().getString(R.string.irctc_url);
+        mWebView = new MyWebView(this,url);
         setContentView(mWebView);
     }
 
