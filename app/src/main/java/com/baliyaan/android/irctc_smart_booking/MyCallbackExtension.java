@@ -20,10 +20,11 @@ public class MyCallbackExtension extends MyCallbackInterface {
 
     @Override
     public void Call(String msg) {
-        Toast.makeText(mContext,"Page Loaded.",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext,"Page Loaded.",Toast.LENGTH_SHORT).show();
 
         if(MainActivity.mWebView != null) {
-            MainActivity.mWebView.loadUrl("javascript: $(\"input[name='j_captcha']\").val('good');");
+            MainActivity.mWebView.loadUrl("javascript: $(\"input[name='j_username']\").val('subhash673');" +
+                    "$(\"input[name='j_password']\").val('sjs430');");
         }
 
 
