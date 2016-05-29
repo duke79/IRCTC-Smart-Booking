@@ -2,14 +2,10 @@ package com.baliyaan.android.library.web;
 
 import android.content.Context;
 import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-import com.baliyaan.android.library.web.WebAppInterface;
+import com.baliyaan.android.irctc_smart_booking.WebAppInterface;
 
 /**
  * Created by Pulkit Singh on 5/25/2016.

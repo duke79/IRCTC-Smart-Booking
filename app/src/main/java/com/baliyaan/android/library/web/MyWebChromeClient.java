@@ -28,7 +28,7 @@ public class MyWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int progress) {
 
         if (progress == 1) {
-            mCallbackInterface.Call("1");
+            //mCallbackInterface.Call("1");
         }
 
         if (progress == 100) {

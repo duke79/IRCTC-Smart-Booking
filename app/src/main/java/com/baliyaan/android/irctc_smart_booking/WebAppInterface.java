@@ -1,7 +1,8 @@
-package com.baliyaan.android.library.web;
+package com.baliyaan.android.irctc_smart_booking;
 
 import android.content.Context;
 import android.webkit.JavascriptInterface;
+import android.widget.Toast;
 
 /**
  * Created by Pulkit Singh on 5/26/2016.
@@ -17,6 +18,12 @@ public class WebAppInterface {
     /** Show a toast from the web page */
     @JavascriptInterface
     public void showToast(String toast) {
-        //Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+    }
+
+    @JavascriptInterface
+    public void putCaptcha()
+    {
+        Toast.makeText(mContext,"Got the captcha callback.", Toast.LENGTH_LONG).show();
     }
 }
