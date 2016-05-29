@@ -1,3 +1,4 @@
+/*
 function getBase64Image(img) {
     // Create an empty canvas element
     var canvas = document.createElement("canvas");
@@ -15,5 +16,14 @@ function getBase64Image(img) {
     var dataURL = canvas.toDataURL("image/png");
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
+};
+*/
 
+var checkExist = setInterval(function() {
+   if ($('#cimage').length) {
+      Android.showToast("Exists!");
+      clearInterval(checkExist);
+   }
+}, 100); // check every 100ms
+
+Android.showToast("Hello Hello");
