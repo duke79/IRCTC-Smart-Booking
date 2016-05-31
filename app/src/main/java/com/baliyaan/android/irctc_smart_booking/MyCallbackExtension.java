@@ -32,7 +32,7 @@ public class MyCallbackExtension extends MyCallbackInterface {
         //Toast.makeText(mContext,"Page Loaded.",Toast.LENGTH_SHORT).show();
 
         if (MainActivity.mWebView != null) {
-            MainActivity.mWebView.loadUrl("javascript: $(\"input[name='j_username']\").val('subhash673');" +
+            js("$(\"input[name='j_username']\").val('subhash673');" +
                     "$(\"input[name='j_password']\").val('sjs430');");
 
             // Get captcha from javascript
@@ -104,5 +104,12 @@ public class MyCallbackExtension extends MyCallbackInterface {
         //make visible to program
         Activity activity = (Activity) mContext;
         activity.setContentView(linearLayout);
+    }
+
+    private void js(String string)
+    {
+        if (MainActivity.mWebView != null) {
+            MainActivity.mWebView.loadUrl("javascript: " + string);
+        }
     }
 }
