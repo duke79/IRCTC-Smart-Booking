@@ -19,6 +19,26 @@ function getBase64Image(img) {
 };
 */
 
+function confirmInitialized(parent,varstring)
+{
+    var arr = varstring.split(".");
+    var newvarstring="";
+    for(i=1;i<arr.length;i++)
+    {
+      newvarstring+=arr[i];
+      if(i != arr.length-1)
+      {
+        newvarstring+=".";
+      }
+    }
+    if(typeof parent[arr[0]] == 'undefined')
+    {
+      parent[arr[0]]={}
+    }
+
+    if(arr.length>1)
+    confirmInitialized(parent[arr[0]],newvarstring);
+}
 var checkExist = setInterval(function() {
    if ($('#cimage').length) {
       Android.showToast("Exists!");
