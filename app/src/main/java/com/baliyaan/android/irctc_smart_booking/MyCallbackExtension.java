@@ -27,6 +27,7 @@ public class MyCallbackExtension extends MyCallbackInterface {
 
     MainActivity mContext;
     Bitmap captchaImage = null;
+    private boolean mIsLoginFormInflated;
 
     public MyCallbackExtension(MainActivity context) {
         mContext = context;
@@ -44,19 +45,27 @@ public class MyCallbackExtension extends MyCallbackInterface {
         Bitmap captchaImage = getCaptchaImage();
         //displayBitmap(captchaImage);
         displayLoginForm(captchaImage);
+        setCaptchaImage();
         Log.d("MyCallbackExtension: ","finish");
 
     }
 
-    private void displayLoginForm(Bitmap captchaImage) {
-
-        //make visible to program
+    private void setCaptchaImage() {
         Activity activity = (Activity) mContext;
-        activity.setContentView(R.layout.login_form);
-
         //setting image resource
         ImageView imgcaptcha = (ImageView) activity.findViewById(R.id.captchaimage);
-        imgcaptcha.setImageBitmap(captchaImage);
+        if(null != imgcaptcha) {
+            imgcaptcha.setImageBitmap(captchaImage);
+        }
+    }
+
+    private void displayLoginForm(Bitmap captchaImage) {
+        if(false == mIsLoginFormInflated) {
+            //make visible to program
+            Activity activity = (Activity) mContext;
+            activity.setContentView(R.layout.login_form);
+        }
+        mIsLoginFormInflated = true;
     }
 
     public Bitmap getCaptchaImage() {
