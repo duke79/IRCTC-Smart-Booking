@@ -1,3 +1,17 @@
+// Intialization for web testing
+/*
+Android = {
+showToast: function(str)
+{
+console.log("TOAST:"+str);
+},
+putOnConsole: function(str)
+{
+console.log("Console:"+str);
+}
+}
+*/
+
 /*
 function getBase64Image(img) {
     // Create an empty canvas element
@@ -39,10 +53,21 @@ function confirmInitialized(parent,varstring)
     if(arr.length>1)
     confirmInitialized(parent[arr[0]],newvarstring);
 }
+
 var checkExist = setInterval(function() {
-   if ($('#cimage').length) {
-      Android.showToast("Exists!");
-      clearInterval(checkExist);
+   confirmInitialized(Android,"irctc");
+   if(typeof Android.irctc.imgcaptcha=='undefined')
+   {
+     if ($('#cimage').length)
+     {
+       Android.showToast("Exists!");
+       Android.irctc.imgcaptcha=$('#cimage')[0];
+       clearInterval(checkExist);
+     }
+   }
+   else
+   {
+     clearInterval(checkExist);
    }
 }, 100); // check every 100ms
 
