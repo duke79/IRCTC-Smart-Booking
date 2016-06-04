@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by Pulkit Singh on 5/26/2016.
@@ -31,6 +33,8 @@ public class MyCallbackExtension extends MyCallbackInterface {
     MainActivity mContext;
     Bitmap captchaImage = null;
     private boolean mIsLoginFormInflated;
+    String sessionCookie = "";
+    String slbCookie = "";
 
     public MyCallbackExtension(MainActivity context) {
         mContext = context;
@@ -109,6 +113,21 @@ public class MyCallbackExtension extends MyCallbackInterface {
         }
     }
 
+    public String getCookie(String siteName,String CookieName){
+        String CookieValue = null;
+
+        CookieManager cookieManager = CookieManager.getInstance();
+        String cookies = cookieManager.getCookie(siteName);
+        String[] temp=cookies.split(";");
+        for (String ar1 : temp ){
+            if(ar1.contains(CookieName)){
+                String[] temp1=ar1.split("=");
+                CookieValue = temp1[1];
+            }
+        }
+        return CookieValue;
+    }
+
     public Bitmap getCaptchaImage() {
         if(captchaImage==null) {
             new Thread(new Runnable() {
@@ -116,12 +135,18 @@ public class MyCallbackExtension extends MyCallbackInterface {
                 public void run() {
                     URL url = null;
                     try {
+                        sessionCookie = getCookie("https://www.irctc.co.in","JSESSIONID");
+                        slbCookie = getCookie("https://www.irctc.co.in","SLB_Cookie");
+                        Log.d("cookie found: ",sessionCookie);
+                        Log.d("slb cookie found: ",slbCookie);
                         url = new URL("https://www.irctc.co.in/eticketing/captchaImage");
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
                     try {
-                        captchaImage = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        URLConnection connection = url.openConnection();
+                        connection.setRequestProperty("Cookie","JSESSIONID="+sessionCookie+" ; SLB_Cookie="+slbCookie);
+                        captchaImage = BitmapFactory.decodeStream(connection.getInputStream());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
