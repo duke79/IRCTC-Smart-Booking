@@ -1,5 +1,3 @@
-// Intialization for web testing
-/*
 Android = {
 showToast: function(str)
 {
@@ -10,9 +8,7 @@ putOnConsole: function(str)
 console.log("Console:"+str);
 }
 }
-*/
 
-/*
 function getBase64Image(img) {
     // Create an empty canvas element
     var canvas = document.createElement("canvas");
@@ -31,7 +27,6 @@ function getBase64Image(img) {
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 };
-*/
 
 function confirmInitialized(parent,varstring)
 {
@@ -60,8 +55,9 @@ var checkExist = setInterval(function() {
    {
      if ($('#cimage').length)
      {
-       Android.showToast("Exists!");
+       Android.putOnConsole("Captcha Image Exists!");
        Android.irctc.imgcaptcha=$('#cimage')[0];
+       Android.putOnConsole(getBase64Image(Android.irctc.imgcaptcha));
        clearInterval(checkExist);
      }
    }
@@ -70,5 +66,3 @@ var checkExist = setInterval(function() {
      clearInterval(checkExist);
    }
 }, 100); // check every 100ms
-
-Android.showToast("Hello Hello");

@@ -1,6 +1,7 @@
 package com.baliyaan.android.irctc_smart_booking;
 
 import android.content.Context;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
@@ -22,8 +23,8 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public void putCaptcha()
+    public void putOnConsole(String str)
     {
-        Toast.makeText(mContext,"Got the captcha callback.", Toast.LENGTH_LONG).show();
+        Log.d("js says: ",str);
     }
 }
