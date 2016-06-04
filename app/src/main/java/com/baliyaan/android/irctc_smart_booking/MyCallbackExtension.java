@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,8 +42,21 @@ public class MyCallbackExtension extends MyCallbackInterface {
 
         // Get captcha from bitmap
         Bitmap captchaImage = getCaptchaImage();
-        displayBitmap(captchaImage);
+        //displayBitmap(captchaImage);
+        displayLoginForm(captchaImage);
+        Log.d("MyCallbackExtension: ","finish");
 
+    }
+
+    private void displayLoginForm(Bitmap captchaImage) {
+
+        //make visible to program
+        Activity activity = (Activity) mContext;
+        activity.setContentView(R.layout.login_form);
+
+        //setting image resource
+        ImageView imgcaptcha = (ImageView) activity.findViewById(R.id.captchaimage);
+        imgcaptcha.setImageBitmap(captchaImage);
     }
 
     public Bitmap getCaptchaImage() {
