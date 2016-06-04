@@ -7,7 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -38,8 +41,8 @@ public class MyCallbackExtension extends MyCallbackInterface {
         //Toast.makeText(mContext,"Page Loaded.",Toast.LENGTH_SHORT).show();
 
         // Fill user details
-        js("$(\"input[name='j_username']\").val('subhash673');" +
-                "$(\"input[name='j_password']\").val('sjs430');");
+        //js("$(\"input[name='j_username']\").val('subhash673');" +
+        //        "$(\"input[name='j_password']\").val('sjs430');");
 
         // Get captcha from bitmap
         Bitmap captchaImage = getCaptchaImage();
@@ -64,8 +67,46 @@ public class MyCallbackExtension extends MyCallbackInterface {
             //make visible to program
             Activity activity = (Activity) mContext;
             activity.setContentView(R.layout.login_form);
+            final EditText userid = (EditText) activity.findViewById(R.id.userid);
+            if(null != userid) {
+                userid.setText("subhash673");
+            }
+
+            final EditText password = (EditText) activity.findViewById(R.id.password);
+            if(null != password) {
+                password.setText("sjs430");
+            }
+
+            final EditText captcha = (EditText) activity.findViewById(R.id.captcha);
+
+            Button loginButton = (Button) activity.findViewById(R.id.loginbutton);
+            if(null != loginButton)
+            {
+                loginButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(null!=userid && null!=password && null!=captcha) {
+                            String useridStr = userid.getText().toString();
+                            String passwordStr = password.getText().toString();
+                            String captchaStr = captcha.getText().toString();
+                            Login(useridStr,passwordStr,captchaStr);
+                        }
+                    }
+                });
+            }
         }
         mIsLoginFormInflated = true;
+    }
+
+    private void Login(String useridStr, String passwordStr, String captchaStr) {
+        // Fill user details
+        js("$(\"input[name='j_username']\").val('"+ useridStr +"');" +
+                "$(\"input[name='j_password']\").val('"+ passwordStr +"');"+
+                "$(\"input[name='j_captcha']\").val('"+ captchaStr +"');");
+        Activity activity = (Activity)mContext;
+        if(null != activity && null != MainActivity.mWebView) {
+            activity.setContentView(MainActivity.mWebView);
+        }
     }
 
     public Bitmap getCaptchaImage() {

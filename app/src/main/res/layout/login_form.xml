@@ -9,99 +9,75 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.baliyaan.android.irctc_smart_booking.MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material"
-        android:layout_alignParentLeft="true">
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="User ID"
+        android:id="@+id/useridlabel"
+        android:textSize="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="User ID"
-            android:id="@+id/useridlabel"
-            android:textSize="25dp"
-            android:layout_weight="0.61803398875"/>
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/userid"
-            android:layout_weight="0.38196601125" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material"
-        android:layout_below="@id/linearLayout1"
-        android:layout_alignParentLeft="true">
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Password"
+        android:id="@+id/passwordlabel"
+        android:textSize="25dp"
+        android:layout_below="@+id/useridlabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Password"
-            android:id="@+id/passwordlabel"
-            android:textSize="25dp"
-            android:layout_weight="0.61803398875"/>
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/password"
-            android:layout_weight="0.38196601125" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material"
-        android:layout_below="@id/linearLayout2"
-        android:layout_alignParentLeft="true">
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Captcha"
+        android:id="@+id/captchalabel"
+        android:textSize="25dp"
+        android:layout_below="@+id/passwordlabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Captcha"
-            android:id="@+id/captchalabel"
-            android:textSize="25dp"
-            android:layout_weight="0.61803398875"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userid"
+        android:layout_toRightOf="@+id/useridlabel"/>
 
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/captcha"
-            android:layout_weight="0.38196601125" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:layout_toRightOf="@+id/passwordlabel"
+        android:layout_below="@+id/userid"/>
 
-    </LinearLayout>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/captcha"
+        android:layout_toRightOf="@+id/captchalabel"
+        android:layout_below="@+id/password"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/captchaimage"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignLeft="@id/captcha"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/loginbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/captcha"
+        android:layout_alignEnd="@+id/captcha"
+        android:layout_marginBottom="44dp" />
 
 
 </RelativeLayout>
