@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,8 +32,6 @@ public class MyCallbackExtension extends MyCallbackInterface {
     MainActivity mContext;
     Bitmap captchaImage = null;
     private boolean mIsLoginFormInflated;
-    String sessionCookie = "";
-    String slbCookie = "";
 
     public MyCallbackExtension(MainActivity context) {
         mContext = context;
@@ -113,21 +110,6 @@ public class MyCallbackExtension extends MyCallbackInterface {
         if(null != activity && null != MainActivity.mWebView) {
             activity.setContentView(MainActivity.mWebView);
         }
-    }
-
-    public String getCookie(String siteName,String CookieName){
-        String CookieValue = null;
-
-        CookieManager cookieManager = CookieManager.getInstance();
-        String cookies = cookieManager.getCookie(siteName);
-        String[] temp=cookies.split(";");
-        for (String ar1 : temp ){
-            if(ar1.contains(CookieName)){
-                String[] temp1=ar1.split("=");
-                CookieValue = temp1[1];
-            }
-        }
-        return CookieValue;
     }
 
     public Bitmap getCaptchaImage() {

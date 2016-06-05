@@ -2,6 +2,7 @@ package com.baliyaan.android.library.web;
 
 import android.content.Context;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -43,6 +44,21 @@ public class MyWebView extends WebView {
 
     public void appendJS(String string) {
         loadUrl("javascript: " + string);
+    }
+
+    public String getCookie(String siteName,String CookieName){
+        String CookieValue = null;
+
+        CookieManager cookieManager = CookieManager.getInstance();
+        String cookies = cookieManager.getCookie(siteName);
+        String[] temp=cookies.split(";");
+        for (String ar1 : temp ){
+            if(ar1.contains(CookieName)){
+                String[] temp1=ar1.split("=");
+                CookieValue = temp1[1];
+            }
+        }
+        return CookieValue;
     }
 }
 
