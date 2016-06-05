@@ -27,4 +27,13 @@ public class WebAppInterface {
     {
         Log.d("js says: ",str);
     }
+
+    @JavascriptInterface
+    public void captchaposition(double top, double left,double height, double width)
+    {
+        MainActivity.captchatop=top;
+        MainActivity.captchaleft=left;
+        MainActivity.captchaheight=height;
+        MainActivity.captchawidth=width;
+    }
 }

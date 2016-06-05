@@ -48,10 +48,12 @@ public class MyCallbackExtension extends MyCallbackInterface {
         //js("$(\"input[name='j_username']\").val('subhash673');" +
         //        "$(\"input[name='j_password']\").val('sjs430');");
 
+        js("Android.captchaposition($(\"#cimage\").offset().top,$(\"#cimage\").offset().left,$(\"#cimage\").height(),$(\"#cimage\").width());");
+
         // Get captcha from bitmap
-        Bitmap captchaImage = getCaptchaImage();
+        captchaImage = getCaptchaImage();
         //displayBitmap(captchaImage);
-        displayLoginForm(captchaImage);
+         displayLoginForm(captchaImage);
         setCaptchaImage();
         Log.d("MyCallbackExtension: ","finish");
 
@@ -129,30 +131,24 @@ public class MyCallbackExtension extends MyCallbackInterface {
     }
 
     public Bitmap getCaptchaImage() {
-        if(captchaImage==null) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    URL url = null;
-                    try {
-                        sessionCookie = getCookie("https://www.irctc.co.in","JSESSIONID");
-                        slbCookie = getCookie("https://www.irctc.co.in","SLB_Cookie");
-                        Log.d("cookie found: ",sessionCookie);
-                        Log.d("slb cookie found: ",slbCookie);
-                        url = new URL("https://www.irctc.co.in/eticketing/captchaImage");
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        URLConnection connection = url.openConnection();
-                        connection.setRequestProperty("Cookie","JSESSIONID="+sessionCookie+" ; SLB_Cookie="+slbCookie);
-                        captchaImage = BitmapFactory.decodeStream(connection.getInputStream());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }
+        // Get captcha
+        float scale = MainActivity.mWebView.getScale();
+        int webViewHeight = (int) (MainActivity.mWebView.getContentHeight() * scale);
+        Bitmap image = Bitmap.createBitmap(MainActivity.mWebView.getWidth(), webViewHeight, Bitmap.Config.ARGB_8888);
+        //int width = image.getWidth();
+        //int height = image.getHeight();
+        Canvas canvas = new Canvas(image);
+        MainActivity.mWebView.draw(canvas);
+        Bitmap captchaImage = Bitmap.createBitmap(image, (int)MainActivity.captchaleft,(int)MainActivity.captchatop,(int)MainActivity.captchawidth,(int)MainActivity.captchaheight);
+        /*
+        int iX=370;
+        if(width>975)
+            iX = 340*width/975+ 45;
+        int iY = 363;//363*height/1220;
+        int iWidth = 150;//120*width/1280;
+        int iHeight= 200;//40*height/1220;
+        Bitmap captchaImage = Bitmap.createBitmap(image,iX,iY,iWidth,iHeight);
+        */
         return captchaImage;
     }
 

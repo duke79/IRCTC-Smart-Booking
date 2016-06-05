@@ -18,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     Context mContext;
     static MyWebView mWebView;
+    static double captchatop;
+    static double captchaleft;
+    static double captchaheight=40;
+    static double captchawidth=136;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
