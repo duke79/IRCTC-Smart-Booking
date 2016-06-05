@@ -12,7 +12,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.baliyaan.android.library.web.MyWebView;
+import com.baliyaan.android.library.lib_web.MyWebView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         String url = getResources().getString(R.string.irctc_url);
         MyCallbackExtension callbackExtension = new MyCallbackExtension(this);
         mWebView = new MyWebView(this,url,callbackExtension);
+        mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
         setContentView(mWebView);
     }
 

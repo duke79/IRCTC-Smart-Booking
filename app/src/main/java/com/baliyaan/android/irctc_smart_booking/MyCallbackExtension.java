@@ -16,13 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.baliyaan.android.library.io.FileIO;
-import com.baliyaan.android.library.web.MyCallbackInterface;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import com.baliyaan.android.library.lib_web.MyCallbackInterface;
 
 /**
  * Created by Pulkit Singh on 5/26/2016.
