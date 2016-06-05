@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.baliyaan.android.irctc_smart_booking.MainActivity;
 import com.baliyaan.android.irctc_smart_booking.WebAppInterface;
 
 /**
@@ -38,6 +39,10 @@ public class MyWebView extends WebView {
         // To show Java Script alerts in the webview
         MyWebChromeClient webChromeClient = new MyWebChromeClient(context,mCallbackInterface);
         setWebChromeClient(webChromeClient);
+    }
+
+    public void appendJS(String string) {
+        loadUrl("javascript: " + string);
     }
 }
 
