@@ -1,28 +1,17 @@
 package com.baliyaan.android.irctc_smart_booking;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.baliyaan.android.library.io.FileIO;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import com.baliyaan.android.library.lib_web.MyCallbackInterface;
+import com.baliyaan.android.library.web.MyCallbackInterface;
 
 /**
  * Created by Pulkit Singh on 5/26/2016.

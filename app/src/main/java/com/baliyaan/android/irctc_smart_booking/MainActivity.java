@@ -1,18 +1,11 @@
 package com.baliyaan.android.irctc_smart_booking;
 
 import android.content.Context;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import com.baliyaan.android.library.lib_web.MyWebView;
+import com.baliyaan.android.library.web.MyWebView;
 
 
 public class MainActivity extends AppCompatActivity {
