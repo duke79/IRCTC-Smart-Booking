@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="User ID"
-        android:id="@+id/login_form_useridlabel"
+        android:id="@+id/fragment_login_useridlabel"
         android:textSize="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Password"
-        android:id="@+id/login_form_passwordlabel"
+        android:id="@+id/fragment_login_passwordlabel"
         android:textSize="25dp"
-        android:layout_below="@+id/login_form_useridlabel"
+        android:layout_below="@+id/fragment_login_useridlabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -36,36 +36,36 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Captcha"
-        android:id="@+id/login_form_captchalabel"
+        android:id="@+id/fragment_login_captchalabel"
         android:textSize="25dp"
-        android:layout_below="@+id/login_form_passwordlabel"
+        android:layout_below="@+id/fragment_login_passwordlabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_form_userid"
-        android:layout_toRightOf="@+id/login_form_useridlabel"/>
+        android:id="@+id/fragment_login_userid"
+        android:layout_toRightOf="@+id/fragment_login_useridlabel"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_form_password"
-        android:layout_toRightOf="@+id/login_form_passwordlabel"
-        android:layout_below="@+id/login_form_userid"/>
+        android:id="@+id/fragment_login_password"
+        android:layout_toRightOf="@+id/fragment_login_passwordlabel"
+        android:layout_below="@+id/fragment_login_userid"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_form_captcha"
-        android:layout_toRightOf="@+id/login_form_captchalabel"
-        android:layout_below="@+id/login_form_password"/>
+        android:id="@+id/fragment_login_captcha"
+        android:layout_toRightOf="@+id/fragment_login_captchalabel"
+        android:layout_below="@+id/fragment_login_password"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/login_form_captchaimage"
+        android:id="@+id/fragment_login_captchaimage"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/fragment_login_captcha"/>
 
@@ -73,10 +73,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:id="@+id/login_form_loginbutton"
+        android:id="@+id/fragment_login_loginbutton"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/login_form_captcha"
-        android:layout_alignEnd="@+id/login_form_captcha"
+        android:layout_alignRight="@+id/fragment_login_captcha"
+        android:layout_alignEnd="@+id/fragment_login_captcha"
         android:layout_marginBottom="44dp" />
 
 
