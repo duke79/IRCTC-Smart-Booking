@@ -1,5 +1,7 @@
 package com.baliyaan.android.irctc_smart_booking;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,21 +50,33 @@ public class WebFragment extends Fragment {
         }
     }
 
-    public void fillLoginCredentials(String id,String pass,String captcha)
-    {
-        appendJS("$(\"input[name='j_username']\").val('"+ id +"');" +
-                "$(\"input[name='j_password']\").val('"+ pass +"');"+
-                "$(\"input[name='j_captcha']\").val('"+ captcha +"');");
+    public void webViewCallback() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null) {
+            if (mainActivity.mLoginFragment == null) {
+                //Show Login Fragment
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                mainActivity.mLoginFragment = new LoginFragment();
+                fragmentTransaction.add(R.id.fragment_container, mainActivity.mLoginFragment);
+                fragmentTransaction.hide(mainActivity.mWebFragment);
+                fragmentTransaction.commit();
+            }
+        }
     }
 
-    public void sendCaptchaPosition()
-    {
+    public void fillLoginCredentials(String id, String pass, String captcha) {
+        appendJS("$(\"input[name='j_username']\").val('" + id + "');" +
+                "$(\"input[name='j_password']\").val('" + pass + "');" +
+                "$(\"input[name='j_captcha']\").val('" + captcha + "');");
+    }
+
+    public void sendCaptchaPosition() {
         appendJS("Android.captchaposition($(\"#cimage\").offset().top,$(\"#cimage\").offset().left,$(\"#cimage\").height(),$(\"#cimage\").width());");
     }
 
-    public void appendJS(String string){
-        if(mWebView!=null)
-        {
+    public void appendJS(String string) {
+        if (mWebView != null) {
             mWebView.appendJS(string);
         }
     }

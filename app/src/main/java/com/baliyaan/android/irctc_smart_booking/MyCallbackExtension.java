@@ -29,18 +29,6 @@ public class MyCallbackExtension extends MyCallbackInterface {
 
     @Override
     public void Call(String msg) {
-        if (mContext != null) {
-            if (mContext.mLoginFragment == null) {
-                //make visible to program
-
-                Activity activity = mContext;
-                FragmentManager fragmentManager = activity.getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                mContext.mLoginFragment = new LoginFragment();
-                fragmentTransaction.add(R.id.fragment_container, mContext.mLoginFragment);
-                fragmentTransaction.hide(mContext.mWebFragment);
-                fragmentTransaction.commit();
-            }
-        }
+        mContext.mWebFragment.webViewCallback();
     }
 }

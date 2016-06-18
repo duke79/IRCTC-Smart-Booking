@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     WebFragment mWebFragment;
     static double captchatop;
     static double captchaleft;
-    static double captchaheight=40;
-    static double captchawidth=136;
+    static double captchaheight = 40;
+    static double captchawidth = 136;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void showWeb()
-    {
+    public void showWeb() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.hide(mLoginFragment);
