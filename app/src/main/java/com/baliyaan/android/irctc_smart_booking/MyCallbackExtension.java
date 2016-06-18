@@ -22,7 +22,6 @@ import com.baliyaan.android.library.web.MyCallbackInterface;
 public class MyCallbackExtension extends MyCallbackInterface {
 
     MainActivity mContext;
-    LoginFragment mLoginFragment;
 
     public MyCallbackExtension(MainActivity context) {
         mContext = context;
@@ -30,15 +29,18 @@ public class MyCallbackExtension extends MyCallbackInterface {
 
     @Override
     public void Call(String msg) {
-        if(mLoginFragment==null) {
-            //make visible to program
-            Activity activity = (Activity) mContext;
-            activity.setContentView(R.layout.activity_main);
-            FragmentManager fragmentManager = activity.getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            mLoginFragment = new LoginFragment();
-            fragmentTransaction.add(R.id.fragment_container, (Fragment) mLoginFragment);
-            fragmentTransaction.commit();
+        if (mContext != null) {
+            if (mContext.mLoginFragment == null) {
+                //make visible to program
+
+                Activity activity = mContext;
+                FragmentManager fragmentManager = activity.getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                mContext.mLoginFragment = new LoginFragment();
+                fragmentTransaction.add(R.id.fragment_container, mContext.mLoginFragment);
+                fragmentTransaction.hide(mContext.mWebFragment);
+                fragmentTransaction.commit();
+            }
         }
     }
 }

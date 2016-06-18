@@ -1,5 +1,8 @@
 package com.baliyaan.android.irctc_smart_booking;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +14,8 @@ import com.baliyaan.android.library.web.MyWebView;
 public class MainActivity extends AppCompatActivity {
 
     Context mContext;
-    static MyWebView mWebView;
+    LoginFragment mLoginFragment;
+    WebFragment mWebFragment;
     static double captchatop;
     static double captchaleft;
     static double captchaheight=40;
@@ -22,13 +26,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
 
-        //Toast.makeText(mContext,"Activity starts.",Toast.LENGTH_SHORT).show();
-        //setContentView(R.layout.activity_main);
-        String url = getResources().getString(R.string.irctc_url);
-        MyCallbackExtension callbackExtension = new MyCallbackExtension(this);
-        mWebView = new MyWebView(this,url,callbackExtension);
-        mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
-        setContentView(mWebView);
+        setContentView(R.layout.activity_main);
+
+        // Web Fragment
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        mWebFragment = new WebFragment();
+        fragmentTransaction.add(R.id.fragment_container, mWebFragment);
+        //fragmentTransaction.hide(mWebFragment);
+        fragmentTransaction.commit();
+    }
+
+    public void showWeb()
+    {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.hide(mLoginFragment);
+        fragmentTransaction.show(mWebFragment);
+        //fragmentTransaction.replace(R.id.fragment_container, mWebFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -36,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
-                    if (mWebView.canGoBack()) {
-                        mWebView.goBack();
+                    if (mWebFragment.mWebView.canGoBack()) {
+                        mWebFragment.mWebView.goBack();
                     } else {
                         finish();
                     }
