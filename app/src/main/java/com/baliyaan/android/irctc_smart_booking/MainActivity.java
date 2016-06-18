@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         mWebFragment = new WebFragment();
+        mWebFragment.setRetainInstance(true);
         fragmentTransaction.add(R.id.fragment_container, mWebFragment);
         //fragmentTransaction.hide(mWebFragment);
         fragmentTransaction.commit();
