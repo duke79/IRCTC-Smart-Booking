@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 
 /**
@@ -226,7 +227,16 @@ public class LoginFragment extends Fragment {
                         e.printStackTrace();
                     }
                     try {
-                        mCaptchaImage = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        String sessionCookie = mainActivity.mWebFragment.getCookie(getString(R.string.irctc_url),"JSESSIONID");
+                        String slbCookie = mainActivity.mWebFragment.getCookie(getString(R.string.irctc_url),"SLB_Cookie");
+                        String gaCookie = mainActivity.mWebFragment.getCookie(getString(R.string.irctc_url),"_ga");
+                        Log.d("cookie found: ",sessionCookie);
+                        Log.d("slb cookie found: ",slbCookie);
+                        Log.d("_ga cookie found: ",gaCookie);
+                        URLConnection connection = url.openConnection();
+                        connection.setRequestProperty("Cookie","JSESSIONID="+sessionCookie+" ; SLB_Cookie="+slbCookie+" ; _ga="+gaCookie);
+                        mCaptchaImage = BitmapFactory.decodeStream(connection.getInputStream());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
