@@ -41,7 +41,7 @@ public class WebFragment extends Fragment {
         super.onStart();
 
         if (mWebView == null) {
-            String url = getResources().getString(R.string.irctc_url);
+            String url = getActivity().getString(R.string.irctc_url);
             MyCallbackExtension callbackExtension = new MyCallbackExtension((MainActivity) getActivity());
             mWebView = new MyWebView(getActivity(), url, callbackExtension);
             mWebView.addJavascriptInterface(new WebAppInterface(getActivity()), "Android");

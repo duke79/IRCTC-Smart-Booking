@@ -3,6 +3,7 @@ package com.baliyaan.android.irctc_smart_booking;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 /**
@@ -36,7 +41,7 @@ public class LoginFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    Bitmap captchaImage = null;
+    Bitmap mCaptchaImage = null;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -50,7 +55,10 @@ public class LoginFragment extends Fragment {
         mainActivity.mWebFragment.sendCaptchaPosition();
 
         // Get captcha from bitmap
-        captchaImage = getCaptchaImage();
+        //mCaptchaImage = getCaptchaImage();
+        if(mCaptchaImage==null) {
+            mCaptchaImage = getCaptchaImageFromUrl();
+        }
         //displayBitmap(captchaImage);
         displayLoginForm();
         setCaptchaImage();
@@ -134,8 +142,8 @@ public class LoginFragment extends Fragment {
         Activity activity = getActivity();
         //setting image resource
         ImageView imgcaptcha = (ImageView) activity.findViewById(R.id.fragment_login_captchaimage);
-        if (null != imgcaptcha) {
-            imgcaptcha.setImageBitmap(captchaImage);
+        if (null != imgcaptcha && null != mCaptchaImage) {
+            imgcaptcha.setImageBitmap(mCaptchaImage);
         }
     }
 
@@ -179,6 +187,7 @@ public class LoginFragment extends Fragment {
     }
 
     public Bitmap getCaptchaImage() {
+        Bitmap captchaImage=null;
         // Get captcha
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
@@ -189,7 +198,7 @@ public class LoginFragment extends Fragment {
             //int height = image.getHeight();
             Canvas canvas = new Canvas(image);
             mainActivity.mWebFragment.mWebView.draw(canvas);
-            Bitmap captchaImage = Bitmap.createBitmap(image, (int) MainActivity.captchaleft, (int) MainActivity.captchatop, (int) MainActivity.captchawidth, (int) MainActivity.captchaheight);
+            captchaImage = Bitmap.createBitmap(image, (int) MainActivity.captchaleft, (int) MainActivity.captchatop, (int) MainActivity.captchawidth, (int) MainActivity.captchaheight);
         /*
         int iX=370;
         if(width>975)
@@ -201,6 +210,29 @@ public class LoginFragment extends Fragment {
         */
         }
         return captchaImage;
+    }
+
+    public Bitmap getCaptchaImageFromUrl()
+    {
+        //final Bitmap[] captchaImage = {null};
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    URL url = null;
+                    try {
+                        String strURL = getActivity().getString(R.string.captcha_url);
+                        url = new URL(strURL);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        mCaptchaImage = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        return mCaptchaImage;
     }
 
     public void displayBitmap(Bitmap image) {
