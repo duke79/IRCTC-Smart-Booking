@@ -55,3 +55,4 @@ gradle/
 gradle.properties
 gradlew
 gradlew.bat
+logcat.txt

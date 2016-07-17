@@ -6,10 +6,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -83,15 +85,36 @@ public class WebFragment extends Fragment {
     }
 
     public String getCookie(String siteName,String CookieName){
-        String CookieValue = null;
+        String CookieValue = "";
 
+        CookieSyncManager.createInstance(getActivity());
+        CookieSyncManager.getInstance().startSync();
         CookieManager cookieManager = CookieManager.getInstance();
-        String cookies = cookieManager.getCookie(siteName);
-        String[] temp=cookies.split(";");
-        for (String ar1 : temp ){
-            if(ar1.contains(CookieName)){
-                String[] temp1=ar1.split("=");
-                CookieValue = temp1[1];
+        if(null != cookieManager) {
+            String cookies = cookieManager.getCookie(siteName);
+            if(null != cookies) {
+                String[] temp = cookies.split(";");
+                for (String ar1 : temp) {
+                    if (ar1.contains(CookieName)) {
+                        String[] temp1 = ar1.split("=");
+                        CookieValue = temp1[1];
+                    }
+                }
+            }
+        }
+        return CookieValue;
+    }
+
+    public String getAllCookies(String siteName){
+        String CookieValue = "";
+
+        CookieSyncManager.createInstance(getActivity());
+        CookieSyncManager.getInstance().startSync();
+        CookieManager cookieManager = CookieManager.getInstance();
+        if(null != cookieManager) {
+            String cookies = cookieManager.getCookie(siteName);
+            if(null != cookies) {
+                CookieValue = cookies;
             }
         }
         return CookieValue;

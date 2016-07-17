@@ -228,14 +228,26 @@ public class LoginFragment extends Fragment {
                     }
                     try {
                         MainActivity mainActivity = (MainActivity) getActivity();
+
+
+                        /*
+                        // Get specific cookies and set on httpconnection
                         String sessionCookie = mainActivity.mWebFragment.getCookie(getString(R.string.irctc_url),"JSESSIONID");
                         String slbCookie = mainActivity.mWebFragment.getCookie(getString(R.string.irctc_url),"SLB_Cookie");
                         String gaCookie = mainActivity.mWebFragment.getCookie(getString(R.string.irctc_url),"_ga");
-                        Log.d("cookie found: ",sessionCookie);
-                        Log.d("slb cookie found: ",slbCookie);
-                        Log.d("_ga cookie found: ",gaCookie);
+                        Log.d("IRCTC-SMART-BOOKING","JSESSIONID cookie found: "+sessionCookie);
+                        Log.d("IRCTC-SMART-BOOKING","slb cookie found: "+slbCookie);
+                        Log.d("IRCTC-SMART-BOOKING","_ga cookie found: "+gaCookie);
                         URLConnection connection = url.openConnection();
                         connection.setRequestProperty("Cookie","JSESSIONID="+sessionCookie+" ; SLB_Cookie="+slbCookie+" ; _ga="+gaCookie);
+                        */
+
+                        // Get all the cookies and set on httpconnection
+                        String cookies = mainActivity.mWebFragment.getAllCookies(getString(R.string.irctc_url));
+                        Log.d("IRCTC-SMART-BOOKING","all the cookies found: "+cookies);
+                        URLConnection connection = url.openConnection();
+                        connection.setRequestProperty("Cookie",cookies);
+
                         mCaptchaImage = BitmapFactory.decodeStream(connection.getInputStream());
                     } catch (IOException e) {
                         e.printStackTrace();
