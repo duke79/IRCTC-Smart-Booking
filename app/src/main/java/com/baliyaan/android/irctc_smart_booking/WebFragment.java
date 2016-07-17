@@ -120,6 +120,14 @@ public class WebFragment extends Fragment {
         return CookieValue;
     }
 
+    public String getUserAgentString()
+    {
+        String userAgent;
+        userAgent = mWebView.getSettings().getUserAgentString();
+        return userAgent;
+    }
+
+
     public WebFragment() {
         // Required empty public constructor
     }

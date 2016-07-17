@@ -40,6 +40,7 @@ public class LoginFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mUserAgent;
 
     private OnFragmentInteractionListener mListener;
     Bitmap mCaptchaImage = null;
@@ -215,6 +216,11 @@ public class LoginFragment extends Fragment {
 
     public Bitmap getCaptchaImageFromUrl()
     {
+        // Get the user-agent
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mUserAgent = mainActivity.mWebFragment.getUserAgentString();
+        Log.d("IRCTC-SMART-BOOKING","user agent string: "+mUserAgent);
+
         //final Bitmap[] captchaImage = {null};
             new Thread(new Runnable() {
                 @Override
@@ -247,6 +253,9 @@ public class LoginFragment extends Fragment {
                         Log.d("IRCTC-SMART-BOOKING","all the cookies found: "+cookies);
                         URLConnection connection = url.openConnection();
                         connection.setRequestProperty("Cookie",cookies);
+
+                        // Use the user agent string
+                        connection.setRequestProperty("User-Agent",mUserAgent);
 
                         mCaptchaImage = BitmapFactory.decodeStream(connection.getInputStream());
                     } catch (IOException e) {
